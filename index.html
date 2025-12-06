@@ -348,13 +348,17 @@
         }
     </style>
         
-    <!-- Mini Kit SDK -->
-    <script>
-        // Signal Base Build that the miniapp is ready
-        window.parent.postMessage({ type: 'minikit-ready' }, '*');
-        console.log('MiniKit ready event sent');
-    </script>
-</head>
+    <!-- Farcaster Mini Kit SDK -->
+    <script type="module">
+        import { sdk } from 'https://esm.sh/@farcaster/frame-sdk@0.1.2';
+        
+        // Wait for map to be ready
+        window.addEventListener('load', async () => {
+            // Signal that the miniapp is ready to be displayed
+            await sdk.actions.ready();
+            console.log('Farcaster Mini Kit SDK ready');
+        });
+    </script></head>
 <body>
     <header>
         <h1>🌍 Global Profile Map</h1>
