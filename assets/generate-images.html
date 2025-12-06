@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Profile Map - Image Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            margin: 8px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(102, 126, 234, 0.6);
+        }
+        #status {
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Global Profile Map</h1>
+        <p>Professional Image Generator</p>
+        <button onclick="generateAllImages()">Generate All Images</button>
+        <button onclick="generateIcon()">Generate Icon</button>
+        <button onclick="generateHero()">Generate Hero</button>
+        <button onclick="generateScreenshot()">Generate Screenshot</button>
+        <button onclick="generateSplash()">Generate Splash</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function setStatus(msg) {
+            document.getElementById('status').innerHTML = msg;
+        }
+
+        function downloadImage(canvas, filename) {
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        function generateIcon() {
+            setStatus('Generating icon...');
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Glass circle
+            ctx.beginPath();
+            ctx.arc(256, 256, 180, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Globe icon
+            ctx.font = 'bold 180px Arial';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🌍', 256, 256);
+
+            downloadImage(canvas, 'icon.png');
+            setStatus('Icon downloaded!');
+        }
+
+        function generateHero() {
+            setStatus('Generating hero image...');
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 630;
+            const ctx = canvas.getContext('2d');
+
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(0.5, '#764ba2');
+            gradient.addColorStop(1, '#667eea');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // Glass effect panel
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.fillRect(60, 100, 1080, 430);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(60, 100, 1080, 430);
+
+            // Title
+            ctx.font = 'bold 72px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.fillText('Global Profile Map', 600, 260);
+
+            // Subtitle
+            ctx.font = '36px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillText('Connect with Farcaster users worldwide', 600, 340);
+
+            // Globe emoji
+            ctx.font = '120px Arial';
+            ctx.fillText('🌍', 600, 450);
+
+            downloadImage(canvas, 'hero.png');
+            setStatus('Hero image downloaded!');
+        }
+
+        function generateScreenshot() {
+            setStatus('Generating screenshot...');
+            const canvas = document.createElement('canvas');
+            canvas.width = 750;
+            canvas.height = 1334;
+            const ctx = canvas.getContext('2d');
+
+            // Background
+            const gradient = ctx.createLinearGradient(0, 0, 0, 1334);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 750, 1334);
+
+            // Header bar with glass effect
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.fillRect(0, 0, 750, 120);
+
+            // Title in header
+            ctx.font = 'bold 32px -apple-system';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.fillText('Global Profile Map', 375, 75);
+
+            // Map placeholder
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.fillRect(30, 160, 690, 900);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(30, 160, 690, 900);
+
+            // Globe in center
+            ctx.font = '200px Arial';
+            ctx.fillStyle = 'white';
+            ctx.fillText('🌍', 375, 620);
+
+            // Bottom text
+            ctx.font = 'bold 28px -apple-system';
+            ctx.fillStyle = 'white';
+            ctx.fillText('Pin yourself on the map', 375, 1150);
+
+            downloadImage(canvas, 'screenshot.png');
+            setStatus('Screenshot downloaded!');
+        }
+
+        function generateSplash() {
+            setStatus('Generating splash screen...');
+            const canvas = document.createElement('canvas');
+            canvas.width = 1170;
+            canvas.height = 2532;
+            const ctx = canvas.getContext('2d');
+
+            // Background
+            const gradient = ctx.createLinearGradient(0, 0, 0, 2532);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1170, 2532);
+
+            // Center circle with glass effect
+            ctx.beginPath();
+            ctx.arc(585, 1266, 350, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            // Globe
+            ctx.font = 'bold 400px Arial';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🌍', 585, 1266);
+
+            // Title
+            ctx.font = 'bold 64px -apple-system';
+            ctx.fillStyle = 'white';
+            ctx.fillText('Global Profile Map', 585, 1750);
+
+            downloadImage(canvas, 'splash.png');
+            setStatus('Splash screen downloaded!');
+        }
+
+        function generateOGImage() {
+            setStatus('Generating OG image...');
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 630;
+            const ctx = canvas.getContext('2d');
+
+            // Same as hero
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(0.5, '#764ba2');
+            gradient.addColorStop(1, '#667eea');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.fillRect(60, 100, 1080, 430);
+
+            ctx.font = 'bold 72px -apple-system';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.fillText('Global Profile Map', 600, 260);
+
+            ctx.font = '36px -apple-system';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillText('Pin yourself on the global Farcaster map', 600, 340);
+
+            ctx.font = '120px Arial';
+            ctx.fillText('🌍', 600, 450);
+
+            downloadImage(canvas, 'og-image.png');
+            setStatus('OG image downloaded!');
+        }
+
+        async function generateAllImages() {
+            setStatus('Generating all images...');
+            await new Promise(r => setTimeout(r, 100));
+            generateIcon();
+            await new Promise(r => setTimeout(r, 500));
+            generateHero();
+            await new Promise(r => setTimeout(r, 500));
+            generateScreenshot();
+            await new Promise(r => setTimeout(r, 500));
+            generateSplash();
+            await new Promise(r => setTimeout(r, 500));
+            generateOGImage();
+            setStatus('All images generated! Check your downloads.');
+        }
+    </script>
+</body>
+</html>
