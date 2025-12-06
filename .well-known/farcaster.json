@@ -11,21 +11,16 @@
     "version": "1",
     "name": "Global Profile Map",
     "homeUrl": "https://global-profile-map.vercel.app/",
-    "iconUrl": "https://global-profile-map.vercel.app/assets/1024x1024/667eea/ffffff.png?text=GPM",
-    "splashImageUrl": "https://global-profile-map.vercel.app/assets/1170x2532/667eea/ffffff?text=Global+Map",
-    "splashBackgroundColor": "#667eea",
+    "splashImageUrl": "https://api.dicebear.com/7.x/shapes/png?seed=GlobalProfileMap&size=1170x2532&backgroundColor=667eea",    "splashBackgroundColor": "#667eea",
     "subtitle": "Connect with Farcaster users worldwide",
     "description": "Interactive global map where Farcaster users can add their profile pins by paying 0.5 USDC on Base",
     "screenshotUrls": [
-      "https://global-profile-map.vercel.app/assets/750x1334/667eea/ffffff?text=App+Screenshot"
-    ],
+      "https://api.dicebear.com/7.x/shapes/png?seed=Screenshot1&size=750x1334&backgroundColor=667eea"    ],
     "primaryCategory": "social",
     "tags": ["farcaster", "map", "profiles", "base", "web3", "social"],
-    "heroImageUrl": "https://global-profile-map.vercel.app/assets/1200x630/667eea/ffffff?text=Global+Profile+Map",
-    "tagline": "Pin yourself on the global Farcaster map",
+    "heroImageUrl": "https://api.dicebear.com/7.x/shapes/png?seed=HeroImage&size=1200x630&backgroundColor=667eea",    "tagline": "Pin yourself on the global Farcaster map",
     "ogTitle": "Global Profile Map - Farcaster",
     "ogDescription": "Join the global Farcaster community map. Pay 0.5 USDC to add your profile pin and connect with users worldwide",
-    "ogImageUrl": "https://global-profile-map.vercel.app/assets/1200x630/667eea/ffffff?text=Global+Profile+Map",
-    "webhookUrl": "https://global-profile-map.vercel.app/api/webhook"
+    "ogImageUrl": "https://api.dicebear.com/7.x/shapes/png?seed=OGImage&size=1200x630&backgroundColor=667eea",    "webhookUrl": "https://global-profile-map.vercel.app/api/webhook"
   }
 }
