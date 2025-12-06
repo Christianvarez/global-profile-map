@@ -1,0 +1,28 @@
+{
+  "accountAssociation": {
+    "header": "PENDIENTE_FIRMAR",
+    "payload": "PENDIENTE_FIRMAR",
+    "signature": "PENDIENTE_FIRMAR"
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "Global Profile Map",
+    "subtitle": "Connect with Farcaster users worldwide",
+    "description": "Interactive global map where Farcaster users can add their profile pins by paying 0.5 USDC on Base Network. Discover profiles from around the world and connect with the community.",
+    "screenshotUrls": [
+      "https://christianvarez.github.io/global-profile-map/assets/screenshot.png"
+    ],
+    "iconUrl": "https://christianvarez.github.io/global-profile-map/assets/icon.png",
+    "splashImageUrl": "https://christianvarez.github.io/global-profile-map/assets/splash.png",
+    "splashBackgroundColor": "#667eea",
+    "homeUrl": "https://christianvarez.github.io/global-profile-map/",
+    "webhookUrl": "https://christianvarez.github.io/global-profile-map/api/webhook",
+    "primaryCategory": "social",
+    "tags": ["farcaster", "map", "profiles", "base", "web3", "social"],
+    "heroImageUrl": "https://christianvarez.github.io/global-profile-map/assets/hero.png",
+    "tagline": "Pin yourself on the global Farcaster map",
+    "ogTitle": "Global Profile Map - Farcaster",
+    "ogDescription": "Join the global Farcaster community map. Pay 0.5 USDC to add your profile pin and connect with users worldwide.",
+    "ogImageUrl": "https://christianvarez.github.io/global-profile-map/assets/og-image.png"
+  }
+}
