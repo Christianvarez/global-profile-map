@@ -1,9 +1,8 @@
 {
   "accountAssociation": {
-    "header": "PENDIENTE_FIRMAR",
-    "payload": "PENDIENTE_FIRMAR",
-    "signature": "PENDIENTE_FIRMAR"
-  },
+    "header": "eyJmaW01QjExMzc5MjYkImR5cGUi0iJhdXRoRqI1wia2V5IjoilMHqwY jQyNDQi",
+    "payload": "eyJkb2I1haW4iOiJmb09iYlWwtchJvZm1sZSItYXAudmVyY2VsLmFwcCJ9",
+    "signature": "AAAAAAAAAAAAAAAAyNG04F13s2HnZwKEYr4qFz12yhEAAAAAAAAAAAAAAAAAAAAAAAAAAAA="  },
   "baseBuilder": {
     "ownerAddress": "0x0b4244568b58dd0ffCb30ee4f9A6652FeaB06a8B"
   },
