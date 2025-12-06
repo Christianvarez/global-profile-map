@@ -12,21 +12,21 @@
     "name": "Global Profile Map",
     "subtitle": "Connect with Farcaster users worldwide",
     "description": "Interactive global map where Farcaster users can add their profile pins by paying 0.5 USDC on Base",
-    "imageUrl": "https://global-profile-map.vercel.app/assets/hero.png",
+    "imageUrl": "https://placehold.co/1200x630/667eea/ffffff?text=Global+Profile+Map",
     "screenshotUrls": [
-      "https://global-profile-map.vercel.app/assets/screenshot.png"
+      "https://placehold.co/750x1334/667eea/ffffff?text=App+Screenshot"
     ],
-    "iconUrl": "https://global-profile-map.vercel.app/assets/icon.png",
-    "splashImageUrl": "https://global-profile-map.vercel.app/assets/splash.png",
+    "iconUrl": "https://placehold.co/512x512/667eea/ffffff?text=🌍",
+    "splashImageUrl": "https://placehold.co/1170x2532/667eea/ffffff?text=Global+Map",
     "splashBackgroundColor": "#667eea",
     "homeUrl": "https://global-profile-map.vercel.app/",
     "webhookUrl": "https://global-profile-map.vercel.app/api/webhook",
     "primaryCategory": "social",
     "tags": ["farcaster", "map", "profiles", "base", "web3", "social"],
-    "heroImageUrl": "https://global-profile-map.vercel.app/assets/hero.png",
+    "heroImageUrl": "https://placehold.co/1200x630/667eea/ffffff?text=Global+Profile+Map",
     "tagline": "Pin yourself on the global Farcaster map",
     "ogTitle": "Global Profile Map - Farcaster",
     "ogDescription": "Join the global Farcaster community map. Pay 0.5 USDC to add your profile pin and connect with users worldwide",
-    "ogImageUrl": "https://global-profile-map.vercel.app/assets/og-image.png"
+    "ogImageUrl": "https://placehold.co/1200x630/667eea/ffffff?text=Global+Profile+Map"
   }
 }
