@@ -1,8 +1,8 @@
 {
   "accountAssociation": {
-    "header": "eyJmaW51QjExMzc5MjYkImR5cGUi0iJhdXRoRqI1wia2V5IjoilMHqwYjQyNDQi",
-    "payload": "eyJkb2I1haW4iOiJmb09iYlWxtchJvZm1sZSItYXAudmVyY2VsLmFwcCJ9",
-    "signature": "AAAAAAAAAAAAAAAAyNG04F13s2HnZwKEYr4qFz12yhEAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    "header": "eyJmaW51QjExkxNTIsInR5cGUi0i1JdXRoRqI1wia2V5Ijoi1MHqwVjQyNDQi",
+    "payload": "eyJkb2I1haW4i0iJmb09iYlWxtchJvZm1sZS1tYXAudmVyY2VsLmFwcCJ9",
+    "signature": "AAAAAAAAAAAAyNG04F13s2HnZwKEYr4qFz12yhEAAAAAAAAAAAAAAAAAAAAAAAAA="
   },
   "baseBuilder": {
     "ownerAddress": "0x0b4244568b58dd0ffcb30ee4f9a6652feab06a8b"
@@ -10,23 +10,22 @@
   "miniapp": {
     "version": "1",
     "name": "Global Profile Map",
+    "homeUrl": "https://global-profile-map.vercel.app/",
+    "iconUrl": "https://placehold.co/1024x1024/667eea/ffffff.png?text=GPM",
+    "splashImageUrl": "https://placehold.co/1170x2532/667eea/ffffff?text=Global+Map",
+    "splashBackgroundColor": "#667eea",
     "subtitle": "Connect with Farcaster users worldwide",
     "description": "Interactive global map where Farcaster users can add their profile pins by paying 0.5 USDC on Base",
-    "imageUrl": "https://placehold.co/1200x630/667eea/ffffff?text=Global+Profile+Map",
     "screenshotUrls": [
       "https://placehold.co/750x1334/667eea/ffffff?text=App+Screenshot"
     ],
-    "iconUrl": "https://placehold.co/1024x1024/667eea/ffffff.png?text=GPM"
-    "splashImageUrl": "https://placehold.co/1170x2532/667eea/ffffff?text=Global+Map",
-    "splashBackgroundColor": "#667eea",
-    "homeUrl": "https://global-profile-map.vercel.app/",
-    "webhookUrl": "https://global-profile-map.vercel.app/api/webhook",
     "primaryCategory": "social",
     "tags": ["farcaster", "map", "profiles", "base", "web3", "social"],
     "heroImageUrl": "https://placehold.co/1200x630/667eea/ffffff?text=Global+Profile+Map",
     "tagline": "Pin yourself on the global Farcaster map",
     "ogTitle": "Global Profile Map - Farcaster",
     "ogDescription": "Join the global Farcaster community map. Pay 0.5 USDC to add your profile pin and connect with users worldwide",
-    "ogImageUrl": "https://placehold.co/1200x630/667eea/ffffff?text=Global+Profile+Map"
+    "ogImageUrl": "https://placehold.co/1200x630/667eea/ffffff?text=Global+Profile+Map",
+    "webhookUrl": "https://global-profile-map.vercel.app/api/webhook"
   }
 }
