@@ -347,6 +347,13 @@
             }
         }
     </style>
+        
+    <!-- Mini Kit SDK -->
+    <script>
+        // Signal Base Build that the miniapp is ready
+        window.parent.postMessage({ type: 'minikit-ready' }, '*');
+        console.log('MiniKit ready event sent');
+    </script>
 </head>
 <body>
     <header>
