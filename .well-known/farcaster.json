@@ -16,7 +16,7 @@
     "screenshotUrls": [
       "https://placehold.co/750x1334/667eea/ffffff?text=App+Screenshot"
     ],
-    "iconUrl": "https://placehold.co/512x512/667eea/ffffff?text=🌍",
+    "iconUrl": "https://placehold.co/1024x1024/667eea/ffffff.png?text=GPM"
     "splashImageUrl": "https://placehold.co/1170x2532/667eea/ffffff?text=Global+Map",
     "splashBackgroundColor": "#667eea",
     "homeUrl": "https://global-profile-map.vercel.app/",
