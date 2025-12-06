@@ -4,6 +4,9 @@
     "payload": "PENDIENTE_FIRMAR",
     "signature": "PENDIENTE_FIRMAR"
   },
+  "baseBuilder": {
+    "ownerAddress": "0x0b4244568b58dd0ffCb30ee4f9A6652FeaB06a8B"
+  },
   "miniapp": {
     "version": "1",
     "name": "Global Profile Map",
