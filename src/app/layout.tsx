@@ -6,10 +6,10 @@ import { Providers } from './providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Global Profile Map',
+  title: 'Global Base Profile',
   description: 'Discover and connect with Farcaster users worldwide',
   openGraph: {
-    title: 'Global Profile Map',
+    title: 'Global Base Profile',
     description: 'Discover and connect with Farcaster users worldwide',
   },
 };
