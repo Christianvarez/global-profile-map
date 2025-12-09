@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['i.imgur.com', 'warpcast.com'],
   },
+  experimental: {
+    turbo: false,
+  },
 };
 
 export default nextConfig;
