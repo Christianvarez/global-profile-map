@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
-import { useFarcasterIdentity } from '@farcaster/miniapp-sdk/react';
+import { sdk } from '@farcaster/miniapp-sdk';
 import { cn } from '@/lib/utils';
 import { USDC_CONTRACT_ADDRESS, RECEIVER_WALLET_ADDRESS, USDC_AMOUNT, ERC20_ABI } from '@/lib/contracts';
 
@@ -14,17 +14,32 @@ type Props = {
 export function PlacePinModal({ onClose, location }: Props) {
   const { address, isConnected } = useAccount();
   const [isProcessing, setIsProcessing] = useState(false);
-  const { data: farcasterUser } = useFarcasterIdentity();
-
+  const [farcasterUser, setFarcasterUser] = useState<any>(null);
+  
   const { writeContract, data: hash, error } = useWriteContract();
-
+  
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
   });
 
+  // Get Farcaster context when modal opens
+  useEffect(() => {
+    async function loadFarcasterContext() {
+      try {
+        const context = await sdk.context;
+        if (context?.user) {
+          setFarcasterUser(context.user);
+        }
+      } catch (err) {
+        console.error('Failed to load Farcaster context:', err);
+      }
+    }
+    loadFarcasterContext();
+  }, []);
+
   const handlePlacePin = async () => {
     if (!isConnected || !address) {
-      alert('Please connect your Farcaster wallet first');
+      alert('Please connect your wallet first');
       return;
     }
 
@@ -33,9 +48,8 @@ export function PlacePinModal({ onClose, location }: Props) {
       return;
     }
 
+    setIsProcessing(true);
     try {
-      setIsProcessing(true);
-
       // Execute USDC transfer
       writeContract({
         address: USDC_CONTRACT_ADDRESS,
@@ -43,105 +57,91 @@ export function PlacePinModal({ onClose, location }: Props) {
         functionName: 'transfer',
         args: [RECEIVER_WALLET_ADDRESS, USDC_AMOUNT],
       });
-
-      // TODO: After successful payment, save pin data to database/API
-      // Pin data should include:
-      // - farcasterUser.fid (Farcaster ID)
-      // - farcasterUser.username
-      // - farcasterUser.displayName
-      // - farcasterUser.pfpUrl (profile picture)
-      // - location.lat, location.lng
-      
-      setTimeout(() => {
-        onClose();
-      }, 1000);
     } catch (err) {
       console.error('Error placing pin:', err);
-      alert('Error placing pin. Please try again.');
-    } finally {
+      alert('Failed to place pin. Please try again.');
       setIsProcessing(false);
     }
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      alert('Pin placed successfully!');
+      // TODO: Save pin to database
+      onClose();
+    }
+  }, [isSuccess, onClose]);
+
+  if (error) {
+    console.error('Transaction error:', error);
+  }
+
   return (
-    <div className="fixed inset-0 z-30 flex items-end justify-center bg-black/50 backdrop-blur-sm">
-      <div className="w-full max-w-md rounded-t-3xl bg-slate-900 text-white p-6 pb-8 shadow-2xl">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">Place your pin</h2>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white/95 rounded-2xl shadow-2xl max-w-md w-full p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">Place Your Pin</h2>
           <button
             onClick={onClose}
-            className="text-sm text-white/60 hover:text-white transition"
+            className="text-gray-500 hover:text-gray-700 text-2xl"
           >
-            Cancel
+            ×
           </button>
         </div>
 
-        {!isConnected ? (
-          <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
-            <p className="text-sm text-yellow-200">
-              Please connect your Farcaster wallet to place a pin.
-            </p>
-          </div>
-        ) : farcasterUser ? (
-          <>
-            {/* User Profile Preview */}
-            <div className="mb-6 p-4 bg-slate-800/50 rounded-xl border border-slate-700">
+        {farcasterUser ? (
+          <div className="space-y-4">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4">
               <div className="flex items-center gap-3 mb-3">
                 {farcasterUser.pfpUrl && (
-                  <img 
-                    src={farcasterUser.pfpUrl} 
-                    alt={farcasterUser.displayName || farcasterUser.username}
-                    className="w-12 h-12 rounded-full border-2 border-blue-500"
+                  <img
+                    src={farcasterUser.pfpUrl}
+                    alt={farcasterUser.username}
+                    className="w-12 h-12 rounded-full"
                   />
                 )}
                 <div>
-                  <p className="font-semibold">{farcasterUser.displayName || farcasterUser.username}</p>
-                  <p className="text-sm text-white/60">@{farcasterUser.username}</p>
+                  <p className="font-semibold text-gray-800">
+                    {farcasterUser.displayName || farcasterUser.username}
+                  </p>
+                  <p className="text-sm text-gray-600">@{farcasterUser.username}</p>
                 </div>
               </div>
-              
-              <div className="flex items-center gap-2 text-sm text-white/80 bg-slate-900/50 px-3 py-2 rounded-lg">
-                <span className="text-blue-400">📍</span>
-                <span>Location: {location.lat.toFixed(4)}, {location.lng.toFixed(4)}</span>
-              </div>
             </div>
 
-            {/* Payment Info */}
-            <div className="p-4 bg-white/5 rounded-xl border border-white/10 mb-6">
-              <p className="text-sm text-white/80 mb-2">
-                Place your profile on the global map for <span className="font-semibold text-white">1 USDC</span>
-              </p>
-              <p className="text-xs text-white/50">
-                Your pin will be visible to all users. They can click it to view your Farcaster profile and follow you.
+            <div className="bg-gray-50 rounded-xl p-4">
+              <p className="text-sm text-gray-600 mb-1">Location</p>
+              <p className="font-mono text-sm text-gray-800">
+                {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
               </p>
             </div>
 
-            {/* Payment Button */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+              <p className="text-sm text-yellow-800">
+                💰 Placing a pin costs <span className="font-bold">1 USDC</span>
+              </p>
+            </div>
+
             <button
               onClick={handlePlacePin}
               disabled={isProcessing || isConfirming}
               className={cn(
-                'w-full py-3 px-4 rounded-xl font-medium text-white transition-all',
-                'bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400',
-                'shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50',
-                'disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none',
-                isProcessing || isConfirming ? 'animate-pulse' : ''
+                'w-full py-3 px-6 rounded-xl font-semibold text-white',
+                'bg-gradient-to-r from-blue-600 to-indigo-600',
+                'hover:from-blue-700 hover:to-indigo-700',
+                'transition-all duration-200 shadow-lg',
+                'disabled:opacity-50 disabled:cursor-not-allowed'
               )}
             >
-              {isProcessing || isConfirming ? '⏳ Processing...' : isSuccess ? '✓ Pin Placed!' : '💰 Pay 1 USDC & Place Pin'}
+              {isProcessing || isConfirming
+                ? 'Processing...'
+                : 'Pay 1 USDC & Place Pin'}
             </button>
-
-            {error && (
-              <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                <p className="text-sm text-red-300">
-                  Error: {error.message}
-                </p>
-              </div>
-            )}
-          </>
+          </div>
         ) : (
-          <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <div className="py-8 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading your profile...</p>
           </div>
         )}
       </div>
