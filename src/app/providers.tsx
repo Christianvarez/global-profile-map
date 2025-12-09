@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import { base } from 'wagmi/chains';
 import { http, createConfig } from 'wagmi';
+import { farcasterMiniApp } from '@farcaster/miniapp-wagmi-connector';
 import { ReactNode } from 'react';
 
 const config = createConfig({
@@ -12,6 +13,7 @@ const config = createConfig({
   transports: {
     [base.id]: http(),
   },
+  connectors: [farcasterMiniApp()],
 });
 
 const queryClient = new QueryClient();
